@@ -152,6 +152,28 @@
         .service-card p {
             color: #666;
             line-height: 1.8;
+            margin-bottom: 14px;
+        }
+
+        .service-card ul {
+            list-style: none;
+            text-align: left;
+            color: #666;
+            display: grid;
+            gap: 8px;
+            line-height: 1.6;
+        }
+
+        .service-card li {
+            position: relative;
+            padding-left: 16px;
+        }
+
+        .service-card li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #ff6b6b;
         }
 
         /* FOOTER */
@@ -330,31 +352,88 @@
         <div class="services-grid">
             <div class="service-card">
                 <h3>⚙️ Motor Tamir</h3>
-                <p>Motor arızalarında hızlı ve yerinde çözüm. Tecrübeli teknisyenlerimiz tüm motor sorunlarını çözer.</p>
+                <p>Motor arızalarında hızlı ve yerinde çözüm.</p>
+                <ul>
+                    <li>Turbo ve soğutma sistemi kontrolleri.</li>
+                    <li>Yağ kaçakları ve motor performans testleri.</li>
+                </ul>
             </div>
             <div class="service-card">
                 <h3>🔌 Elektrik Sistemi</h3>
-                <p>Elektrik sorunlarında profesyonel tanı ve tamiri. Akü, kablolar ve tüm elektrik arızaları.</p>
+                <p>Akü, kablolama ve elektrik arızalarında profesyonel destek.</p>
+                <ul>
+                    <li>Far, sinyal, gösterge paneli arızaları.</li>
+                    <li>Marş ve alternatör kontrolü.</li>
+                </ul>
             </div>
             <div class="service-card">
-                <h3> Genel Bakım</h3>
-                <p>Araç bakım ve periyodik kontroller. Aracınızı en iyi durumda tutmak bizim görevimiz.</p>
+                <h3>🔧 Genel Bakım</h3>
+                <p>Periyodik bakımlar ile aracınızı güvenli ve verimli tutuyoruz.</p>
+                <ul>
+                    <li>Filtre, yağ, buji ve sıvı kontrolleri.</li>
+                </ul>
             </div>
             <div class="service-card">
                 <h3>🚨 Acil Yardım</h3>
-                <p>24/7 acil yardım hizmeti. Gece, gündüz ne zaman sorun yaşarsan biz oradayız.</p>
+                <p>Yolda kaldığınızda 7/24 hızlı müdahale.</p>
+                <ul>
+                    <li>Lastik patlaması, akü bitmesi veya arıza durumlarında destek.</li>
+                </ul>
             </div>
             <div class="service-card">
                 <h3>🛗 Araç Çekme</h3>
-                <p>Profesyonel çekme hizmeti. Yaşlı araçları güvenle taşıyoruz.</p>
+                <p>Güvenli çekici desteği ile aracınızı sorunsuz taşıyoruz.</p>
+                <ul>
+                    <li>Kaza veya arıza sonrası yerinde araç çekimi.</li>
+                </ul>
             </div>
             <div class="service-card">
-                <h3> Akü Servisi</h3>
-                <p>Akü değişimi ve şarj hizmeti. Tüm marka aküleri stokta bulunduruyoruz.</p>
+                <h3>🔋 Akü Servisi</h3>
+                <p>Akü kontrolü, şarj ve değişim hizmetleri.</p>
+                <ul>
+                    <li>Şarj problemleri ve akü bakımı.</li>
+                </ul>
             </div>
             <div class="service-card">
                 <h3>🛢️ Yağ Değişimi</h3>
-                <p>Periyodik yağ ve filtre değişimi. Araçınızın uzun ömürlü olması için gerekli.</p>
+                <p>Yağ ve filtre değişimi ile uzun ömürlü performans.</p>
+                <ul>
+                    <li>Motor, şanzıman ve diferansiyel yağ değişimi.</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <h3>🛑 Fren ve Balata</h3>
+                <p>Fren kontrolü, balata değişimi ve güvenli sürüş için bakım.</p>
+                <ul>
+                    <li>Fren hidroliği değişimi ve ABS kontrolü.</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <h3>💻 Arıza Tespit</h3>
+                <p>Bilgisayarlı arıza tespiti ile sorunu hızlı şekilde belirliyoruz.</p>
+                <ul>
+                    <li>ECU, sensör ve elektronik sistem kontrolleri.</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <h3>🧰 Ön Takım ve Süspansiyon</h3>
+                <p>Rot, amortisör, dingil ve aks kontrolleri ile sürüş konforu sağlanır.</p>
+            </div>
+            <div class="service-card">
+                <h3>❄️ Klima ve Soğutma Sistemi</h3>
+                <p>Klima gazı dolumu, kompresör ve radyatör bakımı.</p>
+            </div>
+            <div class="service-card">
+                <h3>🧽 Sistem Temizliği</h3>
+                <p>Enjektör, yakıt sistemi ve egzoz temizliği ile performans artırma.</p>
+            </div>
+            <div class="service-card">
+                <h3>🛡️ Güvenlik Kontrolü</h3>
+                <p>Emniyet kemeri, hava yastığı ve far kontrolü.</p>
+            </div>
+            <div class="service-card">
+                <h3>🔧 Özel Modifikasyon ve Upgrade</h3>
+                <p>Performans parçaları montajı, LED veya aksesuar ekleme.</p>
             </div>
         </div>
     </section>

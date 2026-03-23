@@ -114,27 +114,101 @@
 
         /* ANA SAYFA */
         #home {
-            text-align: center;
-            padding: 150px 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            padding: 110px 50px 90px;
+            background:
+                radial-gradient(circle at top left, rgba(255, 255, 255, 0.18), transparent 30%),
+                radial-gradient(circle at bottom right, rgba(255, 107, 107, 0.22), transparent 28%),
+                linear-gradient(135deg, #17305c 0%, #274690 45%, #ff6b6b 100%);
             color: #fff;
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
+            overflow: hidden;
+        }
+
+        #home::before,
+        #home::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            filter: blur(6px);
+        }
+
+        #home::before {
+            width: 260px;
+            height: 260px;
+            top: 90px;
+            right: 6%;
+        }
+
+        #home::after {
+            width: 180px;
+            height: 180px;
+            bottom: 40px;
+            left: 5%;
+        }
+
+        .home-layout {
+            width: min(1180px, 100%);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(320px, 480px);
+            gap: 48px;
             align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .home-copy {
+            max-width: 620px;
+        }
+
+        .home-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 16px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(12px);
+            margin-bottom: 22px;
+            font-size: 14px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .home-eyebrow span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ffd166;
+            box-shadow: 0 0 12px rgba(255, 209, 102, 0.8);
         }
 
         #home h1 {
-            font-size: 50px;
-            margin-bottom: 20px;
+            font-size: 58px;
+            line-height: 1.05;
+            margin-bottom: 18px;
             animation: slideIn 0.8s ease;
+            max-width: 10ch;
         }
 
         #home p {
             font-size: 20px;
-            margin-bottom: 30px;
-            opacity: 0.9;
+            margin-bottom: 28px;
+            opacity: 0.92;
+            max-width: 560px;
+        }
+
+        .home-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
         }
 
         #home .btn-home {
@@ -153,6 +227,233 @@
             background-color: transparent;
             color: #fff;
             transform: scale(1.05);
+        }
+
+        .home-secondary {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 14px 22px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .home-secondary:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.16);
+        }
+
+        .home-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .home-highlights span {
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            font-size: 14px;
+        }
+
+        .hero-slider {
+            position: relative;
+            padding: 24px;
+            border-radius: 28px;
+            background: rgba(9, 20, 43, 0.42);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 28px 70px rgba(5, 10, 24, 0.35);
+        }
+
+        .slider-track {
+            position: relative;
+            min-height: 470px;
+        }
+
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transform: translateX(24px) scale(0.98);
+            transition: opacity 0.45s ease, transform 0.45s ease;
+            pointer-events: none;
+            display: grid;
+            gap: 18px;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+            pointer-events: auto;
+        }
+
+        .slide-visual {
+            border-radius: 24px;
+            min-height: 260px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slide-visual::after {
+            content: "";
+            position: absolute;
+            inset: auto -40px -60px auto;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.14);
+        }
+
+        .slide-visual.engine {
+            background: linear-gradient(135deg, #ff7b54 0%, #ff416c 100%);
+        }
+
+        .slide-visual.diagnostic {
+            background: linear-gradient(135deg, #00b4d8 0%, #274690 100%);
+        }
+
+        .slide-visual.emergency {
+            background: linear-gradient(135deg, #ffd166 0%, #ef476f 100%);
+        }
+
+        .slide-chip {
+            align-self: flex-start;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.16);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .slide-metrics {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .slide-metrics div {
+            min-width: 108px;
+            padding: 12px 14px;
+            border-radius: 18px;
+            background: rgba(8, 13, 28, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+        }
+
+        .slide-metrics strong {
+            display: block;
+            font-size: 20px;
+        }
+
+        .slide-metrics span {
+            font-size: 12px;
+            opacity: 0.82;
+        }
+
+        .slide-content {
+            background: rgba(255, 255, 255, 0.96);
+            color: #17305c;
+            border-radius: 22px;
+            padding: 24px;
+            box-shadow: 0 14px 35px rgba(9, 18, 36, 0.14);
+        }
+
+        .slide-content h3 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .slide-content p {
+            color: #4c5d7d;
+            margin-bottom: 18px;
+            font-size: 16px;
+        }
+
+        .slide-content ul {
+            list-style: none;
+            display: grid;
+            gap: 10px;
+            color: #4c5d7d;
+        }
+
+        .slide-content li {
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .slide-content li::before {
+            content: "";
+            position: absolute;
+            top: 9px;
+            left: 0;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ff6b6b;
+        }
+
+        .slider-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 18px;
+            gap: 16px;
+        }
+
+        .slider-dots {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .slider-dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            border: 0;
+            background: rgba(255, 255, 255, 0.28);
+            cursor: pointer;
+            transition: transform 0.25s ease, background 0.25s ease;
+        }
+
+        .slider-dot.active {
+            background: #fff;
+            transform: scale(1.2);
+        }
+
+        .slider-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .slider-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            cursor: pointer;
+            font-size: 20px;
+            transition: background 0.25s ease, transform 0.25s ease;
+        }
+
+        .slider-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            transform: translateY(-2px);
         }
 
         /* ORTAK BOLUM BASLIK */
@@ -197,6 +498,28 @@
 
         .service-card p {
             color: #666;
+            margin-bottom: 14px;
+        }
+
+        .service-card ul {
+            list-style: none;
+            text-align: left;
+            color: #666;
+            display: grid;
+            gap: 8px;
+            line-height: 1.6;
+        }
+
+        .service-card li {
+            position: relative;
+            padding-left: 16px;
+        }
+
+        .service-card li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #ff6b6b;
         }
 
         /* NASIL CALISIR */
@@ -290,7 +613,7 @@
         }
 
         .faq-item.active .faq-answer {
-            max-height: 220px;
+            max-height: 500px;
             padding: 16px 20px;
         }
 
@@ -374,6 +697,14 @@
                 font-size: 18px;
             }
 
+            .home-layout {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .home-copy {
+                max-width: none;
+            }
+
             .section-title {
                 font-size: 30px;
             }
@@ -430,13 +761,22 @@
             }
 
             #home {
-                padding: 80px 20px;
+                padding: 80px 20px 60px;
                 min-height: auto;
+            }
+
+            .home-layout {
+                gap: 28px;
+            }
+
+            .home-eyebrow {
+                font-size: 12px;
             }
 
             #home h1 {
                 font-size: 35px;
                 margin-bottom: 15px;
+                max-width: none;
             }
 
             #home p {
@@ -444,9 +784,39 @@
                 margin-bottom: 20px;
             }
 
+            .home-actions {
+                gap: 12px;
+            }
+
             #home .btn-home {
                 padding: 12px 30px;
                 font-size: 14px;
+            }
+
+            .home-secondary {
+                width: 100%;
+                text-align: center;
+            }
+
+            .hero-slider {
+                padding: 18px;
+                border-radius: 22px;
+            }
+
+            .slider-track {
+                min-height: 430px;
+            }
+
+            .slide-visual {
+                min-height: 220px;
+            }
+
+            .slide-content {
+                padding: 20px;
+            }
+
+            .slide-content h3 {
+                font-size: 24px;
             }
 
             #services,
@@ -484,6 +854,27 @@
 
             #home p {
                 font-size: 14px;
+            }
+
+            .home-highlights span {
+                width: 100%;
+                text-align: center;
+            }
+
+            .slider-track {
+                min-height: 460px;
+            }
+
+            .slide-metrics {
+                gap: 10px;
+            }
+
+            .slide-metrics div {
+                min-width: calc(50% - 5px);
+            }
+
+            .slider-controls {
+                flex-direction: column;
             }
 
             .section-title {
@@ -538,9 +929,110 @@
 
     <!-- ANA SAYFA -->
     <section id="home">
-        <h1>🚗 Yolda mı kaldın?</h1>
-        <p>Mobil oto tamir hizmeti ayağına gelsin. Hızlı, güvenilir, profesyonel.</p>
-        <a href="#services" class="btn-home">Hizmetleri Keşfet</a>
+        <div class="home-layout">
+            <div class="home-copy">
+                <div class="home-eyebrow"><span></span> 7/24 mobil oto servis</div>
+                <h1>Arıza nerede olursa olsun, usta sana gelsin.</h1>
+                <p>Yerinde arıza tespiti, acil müdahale ve güvenli yol yardımı ile aracını en kısa sürede tekrar yola hazırlıyoruz.</p>
+                <div class="home-actions">
+                    <a href="#services" class="btn-home">Hizmetleri Keşfet</a>
+                    <a href="#contact" class="home-secondary">Hemen Randevu Al</a>
+                </div>
+                <div class="home-highlights">
+                    <span>30 dk içinde dönüş</span>
+                    <span>7/24 acil destek</span>
+                    <span>Yerinde arıza tespiti</span>
+                </div>
+            </div>
+
+            <div class="hero-slider" aria-label="Öne çıkan hizmetler sliderı">
+                <div class="slider-track">
+                    <article class="hero-slide active">
+                        <div class="slide-visual engine">
+                            <div class="slide-chip">Motor ve performans</div>
+                            <div class="slide-metrics">
+                                <div>
+                                    <strong>7/24</strong>
+                                    <span>mobil ekip</span>
+                                </div>
+                                <div>
+                                    <strong>Yerinde</strong>
+                                    <span>kontrol ve onarım</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide-content">
+                            <h3>Motor sorunlarına hızlı müdahale</h3>
+                            <p>Performans kaybı, hararet ve çalışma düzensizliklerinde yerinde ilk kontrolü yapıp doğru çözümü planlıyoruz.</p>
+                            <ul>
+                                <li>Turbo, yağ kaçağı ve soğutma sistemi kontrolleri</li>
+                                <li>Arıza büyümeden hızlı teşhis ve müdahale</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="hero-slide">
+                        <div class="slide-visual diagnostic">
+                            <div class="slide-chip">Elektronik ve teşhis</div>
+                            <div class="slide-metrics">
+                                <div>
+                                    <strong>ECU</strong>
+                                    <span>sensör taraması</span>
+                                </div>
+                                <div>
+                                    <strong>Net</strong>
+                                    <span>arıza raporu</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide-content">
+                            <h3>Bilgisayarlı arıza tespiti</h3>
+                            <p>Elektrik ve elektronik sistemlerde rastgele parça değişimi yerine ölçümle ilerliyoruz.</p>
+                            <ul>
+                                <li>Akü, marş, alternatör ve gösterge paneli kontrolleri</li>
+                                <li>ECU, sensör ve hata kodu analizi</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="hero-slide">
+                        <div class="slide-visual emergency">
+                            <div class="slide-chip">Acil yol yardımı</div>
+                            <div class="slide-metrics">
+                                <div>
+                                    <strong>Tek çağrı</strong>
+                                    <span>hızlı yönlendirme</span>
+                                </div>
+                                <div>
+                                    <strong>Güvenli</strong>
+                                    <span>çekici desteği</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide-content">
+                            <h3>Yolda kaldığında destek hazır</h3>
+                            <p>Acil yardım, çekici organizasyonu ve ilk müdahale ile stresli süreci tek noktadan yönetiyoruz.</p>
+                            <ul>
+                                <li>Akü bitmesi, arıza ve yol kenarı destek hizmeti</li>
+                                <li>Gerektiğinde güvenli araç çekme ve yönlendirme</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="slider-controls">
+                    <div class="slider-dots" aria-label="Slider navigasyonu">
+                        <button class="slider-dot active" type="button" aria-label="1. slayt"></button>
+                        <button class="slider-dot" type="button" aria-label="2. slayt"></button>
+                        <button class="slider-dot" type="button" aria-label="3. slayt"></button>
+                    </div>
+                    <div class="slider-buttons">
+                        <button class="slider-btn" id="prevSlide" type="button" aria-label="Önceki slayt">&#8249;</button>
+                        <button class="slider-btn" id="nextSlide" type="button" aria-label="Sonraki slayt">&#8250;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section id="services">
@@ -548,31 +1040,88 @@
         <div class="services-grid">
             <div class="service-card">
                 <h3>⚙️ Motor Tamir</h3>
-                <p>Motor arizalarinda hizli ve yerinde cozum.</p>
+                <p>Motor arızalarında hızlı ve yerinde çözüm.</p>
+                <ul>
+                    <li>Turbo ve soğutma sistemi kontrolleri.</li>
+                    <li>Yağ kaçakları ve motor performans testleri.</li>
+                </ul>
             </div>
             <div class="service-card">
                 <h3>🔌 Elektrik Sistemi</h3>
-                <p>Aku, kablolama ve elektrik arizalarinda profesyonel destek.</p>
+                <p>Akü, kablolama ve elektrik arızalarında profesyonel destek.</p>
+                <ul>
+                    <li>Far, sinyal ve gösterge paneli arızaları.</li>
+                    <li>Marş ve alternatör kontrolü.</li>
+                </ul>
             </div>
             <div class="service-card">
                 <h3>🔧 Genel Bakim</h3>
-                <p>Periyodik bakimlarla aracinizi guvenli ve verimli tutuyoruz.</p>
+                <p>Periyodik bakımlar ile aracınızı güvenli ve verimli tutuyoruz.</p>
+                <ul>
+                    <li>Filtre, yağ, buji ve sıvı kontrolleri.</li>
+                </ul>
             </div>
             <div class="service-card">
                 <h3>🚨 Acil Yardim</h3>
-                <p>Yolda kaldiginizda 7/24 hizli mudahale.</p>
+                <p>Yolda kaldığınızda 7/24 hızlı müdahale.</p>
+                <ul>
+                    <li>Lastik patlaması, akü bitmesi veya arıza durumlarında destek.</li>
+                </ul>
             </div>
             <div class="service-card">
                 <h3>🛗 Arac Cekme</h3>
-                <p>Guvenli cekici destegi ile aracinizi sorunsuz tasiyoruz.</p>
+                <p>Güvenli çekici desteği ile aracınızı sorunsuz taşıyoruz.</p>
+                <ul>
+                    <li>Kaza veya arıza sonrası yerinde araç çekimi.</li>
+                </ul>
             </div>
             <div class="service-card">
                 <h3>🔋 Aku Servisi</h3>
-                <p>Aku kontrolu, sarj ve degisim hizmetleri.</p>
+                <p>Akü kontrolü, şarj ve değişim hizmetleri.</p>
+                <ul>
+                    <li>Şarj problemleri ve akü bakımı.</li>
+                </ul>
             </div>
             <div class="service-card">
                 <h3>🛢️ Yag Degisimi</h3>
-                <p>Yag ve filtre degisimi ile uzun omurlu performans.</p>
+                <p>Yağ ve filtre değişimi ile uzun ömürlü performans.</p>
+                <ul>
+                    <li>Motor, şanzıman ve diferansiyel yağ değişimi.</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <h3>🛑 Fren ve Balata</h3>
+                <p>Fren kontrolü, balata değişimi ve güvenli sürüş için bakım.</p>
+                <ul>
+                    <li>Fren hidroliği değişimi ve ABS kontrolü.</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <h3>💻 Ariza Tespit</h3>
+                <p>Bilgisayarlı arıza tespiti ile sorunu hızlı şekilde belirliyoruz.</p>
+                <ul>
+                    <li>ECU, sensör ve elektronik sistem kontrolleri.</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <h3>🧰 Ön Takım ve Süspansiyon</h3>
+                <p>Rot, amortisör, dingil ve aks kontrolleri ile sürüş konforu sağlanır.</p>
+            </div>
+            <div class="service-card">
+                <h3>❄️ Klima ve Soğutma Sistemi</h3>
+                <p>Klima gazı dolumu, kompresör ve radyatör bakımı.</p>
+            </div>
+            <div class="service-card">
+                <h3>🧽 Sistem Temizliği</h3>
+                <p>Enjektör, yakıt sistemi ve egzoz temizliği ile performans artırma.</p>
+            </div>
+            <div class="service-card">
+                <h3>🛡️ Güvenlik Kontrolü</h3>
+                <p>Emniyet kemeri, hava yastığı ve far kontrolü.</p>
+            </div>
+            <div class="service-card">
+                <h3>🔧 Özel Modifikasyon ve Upgrade</h3>
+                <p>Performans parçaları montajı, LED veya aksesuar ekleme.</p>
             </div>
         </div>
     </section>
@@ -608,29 +1157,56 @@
         <div class="faq-container">
             <div class="faq-item">
                 <button class="faq-question" type="button">
-                    <span>Hizmet saatleriniz nedir?</span>
+                    <span>Bir tamir islemi ne kadar zaman alir?</span>
                     <span class="faq-toggle">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>7/24 hizmet veriyoruz. Acil durumlarda her saat ulasabilirsiniz.</p>
+                    <p>Tamir suresi, arizanin turune ve karmasikligina bagli olarak degisir. Basit tamirler 30 dakikadan 1 saate kadar surebilirken, daha karmasik islemler 2-3 saate kadar tutabilir. Sizi hemen arayip tahmini sureyi soyleriz.</p>
                 </div>
             </div>
             <div class="faq-item">
                 <button class="faq-question" type="button">
-                    <span>Ucretlendirme nasil yapiliyor?</span>
+                    <span>Ucretler ne kadar? Gizli ucret var mi?</span>
                     <span class="faq-toggle">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Ariza tespiti sonrasi net fiyat paylasilir, onayiniz olmadan islem yapilmaz.</p>
+                    <p>Muayene ucretsizdir. Tamir ischiligi ve kullanilan parcalar icin fiyat alirsiniz. Gizli ucret yoktur. Islem oncesi size net fiyat kote veririz. Parca fiyatlari piyasaya uygun olarak belirlenir.</p>
                 </div>
             </div>
             <div class="faq-item">
                 <button class="faq-question" type="button">
-                    <span>Hangi bolgelere geliyorsunuz?</span>
+                    <span>24/7 hizmet veriyorsunuz mu?</span>
                     <span class="faq-toggle">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Merkez ve yakin cevre ilcelerde mobil servis sunuyoruz.</p>
+                    <p>Evet! Gece ve gunduz 24 saat hizmet veriyoruz. Gece saatlerinde cagirmaniz halinde, acil durumlar icin ekip gonderilir. Randevu almak icin WhatsApp veya telefon ile bize ulasabilirsiniz.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" type="button">
+                    <span>Hangi marka araclara hizmet veriyorsunuz?</span>
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Tum yerli ve yabanci arac markalarina hizmet veriyoruz. Audi, BMW, Mercedes, Volkswagen, Toyota, Honda, Ford, TOGG vb. hemen hemen tum markalari tamir ediyoruz. Araba modelinizden bagimsiz olarak iletisime gecebilirsiniz.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" type="button">
+                    <span>Ariza teshisi yapiyor musunuz?</span>
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Evet! Ucretsiz muayene ve teshis yapiyoruz. Teknisyenimiz aracinizi kontrol eder, sorun nedir, ne kadara mal olur ve kac saatte biter gibi sorularin cevaplarini verirsiniz.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" type="button">
+                    <span>Tamir sonrasi test surusu yapiyor musunuz?</span>
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Evet! Tum tamir islemlerinden sonra aracinizla test surusu yapiyoruz. Arizanin tamamen giderildiginden ve arac guvenli sekilde calistigindan emin oluruz.</p>
                 </div>
             </div>
         </div>
@@ -650,6 +1226,12 @@
     <script>
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('navMenu');
+        const slides = document.querySelectorAll('.hero-slide');
+        const sliderDots = document.querySelectorAll('.slider-dot');
+        const prevSlideButton = document.getElementById('prevSlide');
+        const nextSlideButton = document.getElementById('nextSlide');
+        let activeSlideIndex = 0;
+        let sliderInterval;
         
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
@@ -662,6 +1244,45 @@
                 navMenu.classList.remove('active');
             });
         });
+
+        function showSlide(index) {
+            activeSlideIndex = (index + slides.length) % slides.length;
+
+            slides.forEach((slide, slideIndex) => {
+                slide.classList.toggle('active', slideIndex === activeSlideIndex);
+            });
+
+            sliderDots.forEach((dot, dotIndex) => {
+                dot.classList.toggle('active', dotIndex === activeSlideIndex);
+            });
+        }
+
+        function restartSlider() {
+            clearInterval(sliderInterval);
+            sliderInterval = setInterval(() => {
+                showSlide(activeSlideIndex + 1);
+            }, 4500);
+        }
+
+        prevSlideButton.addEventListener('click', () => {
+            showSlide(activeSlideIndex - 1);
+            restartSlider();
+        });
+
+        nextSlideButton.addEventListener('click', () => {
+            showSlide(activeSlideIndex + 1);
+            restartSlider();
+        });
+
+        sliderDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+                restartSlider();
+            });
+        });
+
+        showSlide(0);
+        restartSlider();
 
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {

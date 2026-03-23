@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nasıl Çalışır - Mobil Oto Tamirci</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* NAVBAR */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav h2 {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+
+        nav ul li a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* BUTON */
+        .btn {
+            background-color: #fff;
+            color: #ff6b6b;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid #fff;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: #fff;
+        }
+
+        /* NASIL ÇALIŞIR */
+        #how-works {
+            padding: 80px 50px;
+            background-color: #fff;
+            min-height: 100vh;
+        }
+
+        #how-works h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #333;
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .step {
+            text-align: center;
+            padding: 30px;
+            background: #f5f5f5;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            background: #667eea;
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        .step-number {
+            font-size: 40px;
+            font-weight: bold;
+            color: #ff6b6b;
+            margin-bottom: 15px;
+        }
+
+        .step:hover .step-number {
+            color: #fff;
+        }
+
+        .step h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .step p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .step:hover p {
+            color: #fff;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        /* RESPONSIVE - TABLET */
+        @media (max-width: 1024px) {
+            nav {
+                padding: 15px 30px;
+            }
+
+            nav ul {
+                gap: 20px;
+            }
+
+            #how-works h2 {
+                font-size: 30px;
+            }
+
+            .steps-container {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 20px;
+            }
+        }
+
+        /* RESPONSIVE - MOBİL */
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-container {
+                gap: 15px;
+            }
+
+            nav ul {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                gap: 0;
+                background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                padding: 0;
+                width: 100%;
+            }
+
+            nav ul.active {
+                max-height: 300px;
+                padding: 15px 0;
+            }
+
+            nav ul li {
+                width: 100%;
+                text-align: center;
+                padding: 12px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            nav ul li a {
+                display: block;
+            }
+
+            .btn {
+                padding: 10px 15px;
+                font-size: 12px;
+            }
+
+            #how-works {
+                padding: 50px 20px;
+            }
+
+            #how-works h2 {
+                font-size: 28px;
+                margin-bottom: 30px;
+            }
+
+            .steps-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .step {
+                padding: 20px;
+            }
+
+            .step-number {
+                font-size: 32px;
+            }
+
+            .step h3 {
+                font-size: 16px;
+            }
+
+            .step p {
+                font-size: 13px;
+            }
+        }
+
+        /* RESPONSIVE - KÜÇÜK MOBİL */
+        @media (max-width: 480px) {
+            nav h2 {
+                font-size: 18px;
+            }
+
+            #how-works h2 {
+                font-size: 24px;
+            }
+
+            .step {
+                padding: 15px;
+            }
+
+            .step-number {
+                font-size: 28px;
+            }
+
+            footer {
+                font-size: 11px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <nav>
+            <h2>🔧 Mobil Usta</h2>
+
+            <div class="nav-container">
+                <ul id="navMenu">
+                    <li><a href="index.html">Ana Sayfa</a></li>
+                    <li><a href="services.html">Hizmetlerimiz</a></li>
+                    <li><a href="how-works.html">Nasıl Çalışır</a></li>
+                    <li><a href="faq.html">SSS</a></li>
+                    <li><a href="contact.html">İletişim</a></li>
+                </ul>
+
+                <!-- WHATSAPP BUTON -->
+                <a href="https://wa.me/905559778212?text=Merhaba,%20bilgi%20ve%20randevu%20almak%20istiyorum" target="_blank" class="btn">
+                    📱 Randevu Al
+                </a>
+            </div>
+
+            <!-- HAMBURGER MENU -->
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- NASIL ÇALIŞIR -->
+    <section id="how-works">
+        <h2>Nasıl Çalışır?</h2>
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Ara</h3>
+                <p>WhatsApp veya telefon ile bizi arayın. Araç bilgilerinizi kısaca açıklayın.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Konum Ver</h3>
+                <p>Bulunduğunuz konumu paylaşın. Mümkün olduğunca detaylı açıklamalı lokasyon iletin.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Saatinizi Belirleyin</h3>
+                <p>Uygun bir zaman dilimi seçin. Size en yakın teknisyeni görevlendiririz.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Tamirini Yaptır</h3>
+                <p>Teknisyenimiz yerinde, ücretsiz muayene yapar ve tamir işlemini başlatır.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Mobil Usta. Tüm hakları saklıdır. | Güvenilir Tamir Hizmeti</p>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
+
+</body>
+</html>

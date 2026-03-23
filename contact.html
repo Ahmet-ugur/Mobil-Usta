@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İletişim - Mobil Oto Tamirci</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* NAVBAR */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav h2 {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+
+        nav ul li a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* BUTON */
+        .btn {
+            background-color: #fff;
+            color: #ff6b6b;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid #fff;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: #fff;
+        }
+
+        /* İLETİŞİM */
+        #contact {
+            padding: 80px 50px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: #fff;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #contact h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        #contact p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        #contact .btn-contact {
+            background-color: #fff;
+            color: #ff6b6b;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        #contact .btn-contact:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-info {
+            margin-top: 50px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .contact-card p {
+            font-size: 16px;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        /* RESPONSIVE - TABLET */
+        @media (max-width: 1024px) {
+            nav {
+                padding: 15px 30px;
+            }
+
+            nav ul {
+                gap: 20px;
+            }
+
+            #contact h2 {
+                font-size: 30px;
+            }
+
+            #contact .btn-contact {
+                font-size: 14px;
+                padding: 12px 30px;
+            }
+
+            .contact-info {
+                max-width: 95%;
+                gap: 20px;
+            }
+        }
+
+        /* RESPONSIVE - MOBİL */
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-container {
+                gap: 15px;
+            }
+
+            nav ul {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                gap: 0;
+                background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                padding: 0;
+                width: 100%;
+            }
+
+            nav ul.active {
+                max-height: 300px;
+                padding: 15px 0;
+            }
+
+            nav ul li {
+                width: 100%;
+                text-align: center;
+                padding: 12px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            nav ul li a {
+                display: block;
+            }
+
+            .btn {
+                padding: 10px 15px;
+                font-size: 12px;
+            }
+
+            #contact {
+                padding: 50px 20px;
+                min-height: auto;
+            }
+
+            #contact h2 {
+                font-size: 28px;
+            }
+
+            #contact p {
+                font-size: 16px;
+            }
+
+            #contact .btn-contact {
+                font-size: 14px;
+                padding: 12px 30px;
+            }
+
+            .contact-info {
+                margin-top: 30px;
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .contact-card {
+                padding: 15px;
+            }
+
+            .contact-card h3 {
+                font-size: 16px;
+            }
+
+            .contact-card p {
+                font-size: 14px;
+            }
+        }
+
+        /* RESPONSIVE - KÜÇÜK MOBİL */
+        @media (max-width: 480px) {
+            nav h2 {
+                font-size: 18px;
+            }
+
+            #contact h2 {
+                font-size: 24px;
+            }
+
+            #contact p {
+                font-size: 14px;
+            }
+
+            #contact .btn-contact {
+                font-size: 12px;
+                padding: 10px 20px;
+            }
+
+            .contact-card {
+                padding: 12px;
+            }
+
+            footer {
+                font-size: 11px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <nav>
+            <h2>🔧 Mobil Usta</h2>
+
+            <div class="nav-container">
+                <ul id="navMenu">
+                    <li><a href="index.html">Ana Sayfa</a></li>
+                    <li><a href="services.html">Hizmetlerimiz</a></li>
+                    <li><a href="how-works.html">Nasıl Çalışır</a></li>
+                    <li><a href="faq.html">SSS</a></li>
+                    <li><a href="contact.html">İletişim</a></li>
+                </ul>
+
+                <!-- WHATSAPP BUTON -->
+                <a href="https://wa.me/905559778212?text=Merhaba,%20bilgi%20ve%20randevu%20almak%20istiyorum" target="_blank" class="btn">
+                    📱 Randevu Al
+                </a>
+            </div>
+
+            <!-- HAMBURGER MENU -->
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- İLETİŞİM -->
+    <section id="contact">
+        <h2>Hızlı İletişim</h2>
+        <p>Araç probleminiz için hemen bize ulaşın!</p>
+        <a href="https://wa.me/905559778212?text=Merhaba,%20bilgi%20ve%20randevu%20almak%20istiyorum" target="_blank" class="btn-contact">
+            📱 WhatsApp ile İletişim Kur
+        </a>
+
+        <div class="contact-info">
+            <div class="contact-card">
+                <h3>📞 Telefon</h3>
+                <p>+90 555 977 8212</p>
+            </div>
+            <div class="contact-card">
+                <h3>💬 WhatsApp</h3>
+                <p>+90 555 977 8212</p>
+            </div>
+            <div class="contact-card">
+                <h3>🕐 Çalışma Saatleri</h3>
+                <p>24/7 Hizmet</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Mobil Usta. Tüm hakları saklıdır. | Güvenilir Tamir Hizmeti</p>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
+
+</body>
+</html>

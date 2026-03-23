@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sıkça Sorulan Sorular - Mobil Oto Tamirci</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* NAVBAR */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav h2 {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+
+        nav ul li a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* BUTON */
+        .btn {
+            background-color: #fff;
+            color: #ff6b6b;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid #fff;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: #fff;
+        }
+
+        /* SSS SEKSİYONU */
+        #faq {
+            padding: 80px 50px;
+            background-color: #f9f9f9;
+            min-height: 100vh;
+        }
+
+        #faq h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #333;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: #fff;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .faq-question {
+            padding: 20px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: linear-gradient(135deg, #ee5a6f 0%, #ff6b6b 100%);
+        }
+
+        .faq-toggle {
+            font-size: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 20px;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 20px;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        /* RESPONSIVE - TABLET */
+        @media (max-width: 1024px) {
+            nav {
+                padding: 15px 30px;
+            }
+
+            nav ul {
+                gap: 20px;
+            }
+
+            #faq h2 {
+                font-size: 30px;
+            }
+
+            .faq-container {
+                max-width: 95%;
+            }
+        }
+
+        /* RESPONSIVE - MOBİL */
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-container {
+                gap: 15px;
+            }
+
+            nav ul {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                gap: 0;
+                background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                padding: 0;
+                width: 100%;
+            }
+
+            nav ul.active {
+                max-height: 300px;
+                padding: 15px 0;
+            }
+
+            nav ul li {
+                width: 100%;
+                text-align: center;
+                padding: 12px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            nav ul li a {
+                display: block;
+            }
+
+            .btn {
+                padding: 10px 15px;
+                font-size: 12px;
+            }
+
+            #faq {
+                padding: 50px 20px;
+            }
+
+            #faq h2 {
+                font-size: 28px;
+                margin-bottom: 30px;
+            }
+
+            .faq-question {
+                font-size: 14px;
+                padding: 15px;
+            }
+
+            .faq-toggle {
+                font-size: 20px;
+            }
+
+            .faq-answer {
+                padding: 0 15px;
+            }
+
+            .faq-item.active .faq-answer {
+                padding: 15px;
+            }
+        }
+
+        /* RESPONSIVE - KÜÇÜK MOBİL */
+        @media (max-width: 480px) {
+            nav h2 {
+                font-size: 18px;
+            }
+
+            #faq h2 {
+                font-size: 24px;
+            }
+
+            .faq-question {
+                font-size: 13px;
+                padding: 12px;
+            }
+
+            footer {
+                font-size: 11px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <nav>
+            <h2>🔧 Mobil Usta</h2>
+
+            <div class="nav-container">
+                <ul id="navMenu">
+                    <li><a href="index.html">Ana Sayfa</a></li>
+                    <li><a href="services.html">Hizmetlerimiz</a></li>
+                    <li><a href="how-works.html">Nasıl Çalışır</a></li>
+                    <li><a href="faq.html">SSS</a></li>
+                    <li><a href="contact.html">İletişim</a></li>
+                </ul>
+
+                <!-- WHATSAPP BUTON -->
+                <a href="https://wa.me/905559778212?text=Merhaba,%20bilgi%20ve%20randevu%20almak%20istiyorum" target="_blank" class="btn">
+                    📱 Randevu Al
+                </a>
+            </div>
+
+            <!-- HAMBURGER MENU -->
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- SSS -->
+    <section id="faq">
+        <h2>❓ Sıkça Sorulan Sorular</h2>
+        <div class="faq-container">
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Bir tamir işlemi ne kadar zaman alır?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Tamir süresi, arızanın türüne ve karmaşıklığına bağlı olarak değişir. Basit tamirler 30 dakikadan 1 saate kadar sürebilirken, daha karmaşık işlemler 2-3 saate kadar tutabilir. Sizi hemen arayıp tahmini süreyi söyleriz.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Ücretler ne kadar? Gizli ücret var mı?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Muayene ücretsizdir. Tamir işchiliği ve kullanılan parçalar için fiyat alırsınız. Gizli ücret yoktur. İşlem öncesi size net fiyat kote veririz. Parça fiyatları piyasaya uygun olarak belirlenir.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>24/7 hizmet veriyorsunuz mu?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Evet! Gece ve gündüz 24 saat hizmet veriyoruz. Gece saatlerinde çağırmanız halinde, acil durumlar için ekip gönderilir. Randevu almak için WhatsApp veya telefon ile bize ulaşabilirsiniz.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Hangi marka araçlara hizmet veriyorsunuz?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Tüm yerli ve yabancı araç markalarına hizmet veriyoruz. Audi, BMW, Mercedes, Volkswagen, Toyota, Honda, Ford, TOGG vb. hemen hemen tüm markaları tamir ediyoruz. Araba modelinizden bağımsız olarak iletişime geçebilirsiniz.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Yedek parça garantisi veriyorsunuz mu?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Evet! Kullanılan tüm orijinal parçalara üreticinin garantisi geçerlidir. Kaliteli uyumlu parçalar için 1 yıl garantı veriyoruz. Tamir işçiliğine de 1 yıl limitli garantimiz vardır.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Ödeme seçenekleri nelerdir?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Nakit, kredi kartı ve banka transferi ile ödeme kabul ediyoruz. Büyük tamirler için taksit seçeneği de sunabiliriz. Detaylar için tamir sonrasında size bildirilir.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Arıza teşhisi yapıyor musunuz?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Evet! Ücretsiz muayene ve teşhis yapıyoruz. Teknisyenimiz aracınızı kontrol eder, sorun nedir, ne kadara mal olur ve kaç saatte biter gibi soruların cevaplarını verirsiniz.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Tamir sonrası test sürüşü yapıyor musunuz?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Evet! Tüm tamir işlemlerinden sonra aracınızla test sürüşü yapıyoruz. Arızanın tamamen giderildiğinden ve araç güvenli şekilde çalıştığından emin oluruz.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Mobil Usta. Tüm hakları saklıdır. | Güvenilir Tamir Hizmeti</p>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
